@@ -1,0 +1,39 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Main", "BloodTheme")
+
+local Main = Window:NewTab("Main")
+local MainSection = Main:NewSection("Main")
+
+MainSection:NewButton("AFK AutoFarm", "OP AutoFarm- Auto steps, gems, rebirth", function()
+    while true do
+local args = {
+    [1] = "collectOrb",
+    [2] = "Gem",
+    [3] = "City"
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("rEvents"):WaitForChild("orbEvent"):FireServer(unpack(args))
+
+local args = {
+    [1] = "collectOrb",
+    [2] = "Red Orb",
+    [3] = "City"
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("rEvents"):WaitForChild("orbEvent"):FireServer(unpack(args))
+
+local args = {
+    [1] = "rebirthRequest"
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("rEvents"):WaitForChild("rebirthEvent"):FireServer(unpack(args))
+wait()
+end
+end)
+
+MainSection:NewLabel("Leave/Rejoin to stop autofarm")
+
+MainSection:NewLabel("Better with stronger pets")
+
+MainSection:NewLabel("Credit - Unggoy#3120")
+ 

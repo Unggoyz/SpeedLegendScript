@@ -26,6 +26,15 @@ local args = {
     [1] = "rebirthRequest"
 }
 
+local args = {
+    [1] = "collectOrb",
+    [2] = "Yellow Orb",
+    [3] = "City"
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("rEvents"):WaitForChild("orbEvent"):FireServer(unpack(args))
+
+
 game:GetService("ReplicatedStorage"):WaitForChild("rEvents"):WaitForChild("rebirthEvent"):FireServer(unpack(args))
 wait()
 end
@@ -33,7 +42,7 @@ end)
 
 MainSection:NewLabel("Leave/Rejoin to stop autofarm")
 
-MainSection:NewLabel("Better with stronger pets")
+MainSection:NewLabel("Strong pets Recommended- Monke Squad On Top")
 
 MainSection:NewLabel("Credit - Unggoy#3120")
  

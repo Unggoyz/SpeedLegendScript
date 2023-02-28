@@ -1,5 +1,5 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({Name = "UnggoyzHub", HidePremium = false, IntroText = "UnggoyzHub", SaveConfig = true, ConfigFolder = "Config"})
+local Window = OrionLib:MakeWindow({Name = "UnggoyzHub", HidePremium = false, IntroText = "LegendsOfSpeed", SaveConfig = true, ConfigFolder = "Config"})
 
 -- Values
 _G.autosteps = true

@@ -1,48 +1,90 @@
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-local Window = Library.CreateLib("Main", "Serpent")
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "UnggoyzHub", HidePremium = false, IntroText = "UnggoyzHub", SaveConfig = true, ConfigFolder = "Config"})
 
-local Main = Window:NewTab("Main")
-local MainSection = Main:NewSection("Main")
-
-MainSection:NewButton("AFK AutoFarm", "OP AutoFarm- Auto steps, gems, rebirth", function()
-    while true do
-local args = {
-    [1] = "collectOrb",
-    [2] = "Gem",
-    [3] = "City"
-}
-
-game:GetService("ReplicatedStorage"):WaitForChild("rEvents"):WaitForChild("orbEvent"):FireServer(unpack(args))
-
-local args = {
+-- Values
+_G.autosteps = true
+_G.autogems = true
+_G.autorebirth = true
+-- Functions
+function autosteps()
+	while _G.autosteps == true do
+	local args = {
     [1] = "collectOrb",
     [2] = "Red Orb",
     [3] = "City"
 }
 
 game:GetService("ReplicatedStorage"):WaitForChild("rEvents"):WaitForChild("orbEvent"):FireServer(unpack(args))
+wait()
+	end
+end
 
-local args = {
-    [1] = "rebirthRequest"
-}
-
-local args = {
+function autogems()
+	while _G.autogems == true do
+	local args = {
     [1] = "collectOrb",
-    [2] = "Yellow Orb",
+    [2] = "Gem",
     [3] = "City"
 }
 
 game:GetService("ReplicatedStorage"):WaitForChild("rEvents"):WaitForChild("orbEvent"):FireServer(unpack(args))
+wait()
+	end
+end
 
+function autorebirth()
+	while _G.autorebirth == true do
+	local args = {
+    [1] = "rebirthRequest"
+}
 
 game:GetService("ReplicatedStorage"):WaitForChild("rEvents"):WaitForChild("rebirthEvent"):FireServer(unpack(args))
-wait()
+wait(4)
+	end
 end
-end)
 
-MainSection:NewLabel("Leave/Rejoin to stop autofarm")
 
-MainSection:NewLabel("Strong pets Recommended- Monke Squad On Top")
+-- Tabs
+local MainTab = Window:MakeTab({
+	Name = "Main",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
 
-MainSection:NewLabel("Credit - Unggoy#3120")
- 
+local CreditTab = Window:MakeTab({
+	Name = "Credit",
+	Icon = "rbxassetid://4483345999",
+	PremiumOnly = false
+})
+
+-- Credit
+CreditTab:AddLabel("Credit- Unggoy#3120")
+-- Toggles
+MainTab:AddToggle({
+	Name = "AutoSteps",
+	Default = false,
+	Callback = function(Value)
+		_G.autosteps = Value
+		autosteps()
+	end    
+})
+
+MainTab:AddToggle({
+	Name = "AutoGems",
+	Default = false,
+	Callback = function(Value)
+		_G.autogems = Value
+		autogems()
+	end    
+})
+
+MainTab:AddToggle({
+	Name = "AutoRebirth",
+	Default = false,
+	Callback = function(Value)
+		_G.autorebirth = Value
+		autorebirth()
+	end    
+})
+
+OrionLib:Init()
